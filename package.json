@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "@cncsc/eslint-config": "^0.1.0",
+    "@cncsc/semantic-release-config": "^1.0.0",
     "eslint": "^8.26.0"
   }
 }
