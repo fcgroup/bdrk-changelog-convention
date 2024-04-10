@@ -1,5 +1,8 @@
 import { readFile } from 'fs/promises';
 import { resolve } from 'path';
+import { fileURLToPath } from 'url'
+
+const dirname = fileURLToPath(new URL('.', import.meta.url));
 
 function getCommitGroup(type) {
   switch (type) {
@@ -56,8 +59,8 @@ function getWriterOpts() {
 
 export async function createWriterOpts() {
   const writerOpts = getWriterOpts();
-  writerOpts.mainTemplate = await readFile(resolve(__dirname, './templates/template.hbs'), 'utf-8');
-  writerOpts.headerPartial = await readFile(resolve(__dirname, './templates/header.hbs'), 'utf-8');
-  writerOpts.commitPartial = await readFile(resolve(__dirname, './templates/commit.hbs'), 'utf-8');
+  writerOpts.mainTemplate = await readFile(resolve(dirname, './templates/template.hbs'), 'utf-8');
+  writerOpts.headerPartial = await readFile(resolve(dirname, './templates/header.hbs'), 'utf-8');
+  writerOpts.commitPartial = await readFile(resolve(dirname, './templates/commit.hbs'), 'utf-8');
   return writerOpts;
 }
