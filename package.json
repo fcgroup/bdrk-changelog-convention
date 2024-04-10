@@ -3,7 +3,6 @@
   "version": "0.0.0-development",
   "description": "Preset configuration for conventional-changelog describing Bedrock's versioning conventions.",
   "type": "module",
-  "exports": "./src/index.js",
   "files": [
     "src"
   ],
