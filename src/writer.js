@@ -1,6 +1,5 @@
-const Q = require('q');
-const readFile = Q.denodeify(require('fs').readFile);
-const resolve = require('path').resolve;
+import { readFile } from 'fs/promises';
+import { resolve } from 'path';
 
 function getCommitGroup(type) {
   switch (type) {
@@ -55,17 +54,10 @@ function getWriterOpts() {
   };
 }
 
-module.exports = Q.all([
-  readFile(resolve(__dirname, './templates/template.hbs'), 'utf-8'),
-  readFile(resolve(__dirname, './templates/header.hbs'), 'utf-8'),
-  readFile(resolve(__dirname, './templates/commit.hbs'), 'utf-8'),
-])
-  .spread((template, header, commit) => {
-    const writerOpts = getWriterOpts();
-
-    writerOpts.mainTemplate = template;
-    writerOpts.headerPartial = header;
-    writerOpts.commitPartial = commit;
-
-    return writerOpts;
-  });
+export async function createWriterOpts() {
+  const writerOpts = getWriterOpts();
+  writerOpts.mainTemplate = await readFile(resolve(__dirname, './templates/template.hbs'), 'utf-8');
+  writerOpts.headerPartial = await readFile(resolve(__dirname, './templates/header.hbs'), 'utf-8');
+  writerOpts.commitPartial = await readFile(resolve(__dirname, './templates/commit.hbs'), 'utf-8');
+  return writerOpts;
+}

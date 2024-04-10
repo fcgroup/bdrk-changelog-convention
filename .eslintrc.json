@@ -1,3 +1,7 @@
 {
-  "extends": "@cncsc/eslint-config"
+  "extends": "@cncsc/eslint-config",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 14
+  }
 }

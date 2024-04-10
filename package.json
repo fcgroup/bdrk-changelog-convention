@@ -2,7 +2,11 @@
   "name": "@bdrk/changelog-convention",
   "version": "0.0.0-development",
   "description": "Preset configuration for conventional-changelog describing Bedrock's versioning conventions.",
-  "main": "index.js",
+  "type": "module",
+  "exports": "./src/index.js",
+  "files": [
+    "src"
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.com:fcgroup/bdrk-changelog-convention.git"
@@ -19,17 +23,6 @@
     "lint": "eslint ."
   },
   "license": "Apache-2.0",
-  "files": [
-    "conventional-changelog.js",
-    "conventional-recommended-bump.js",
-    "index.js",
-    "parser-opts.js",
-    "writer-opts.js",
-    "templates"
-  ],
-  "dependencies": {
-    "q": "^1.5.1"
-  },
   "devDependencies": {
     "@cncsc/eslint-config": "^0.1.0",
     "@cncsc/semantic-release-config": "^1.0.1",
