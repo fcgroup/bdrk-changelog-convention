@@ -8,9 +8,9 @@
     "url": "git@github.com:fcgroup/bdrk-changelog-convention.git"
   },
   "author": {
-    "name": "Fritz Consulting Group Inc.",
-    "email": "info@fritz.consulting",
-    "url": "https://www.fritz.consulting/"
+    "name": "Bedrock Project",
+    "email": "info@bdrk.dev",
+    "url": "https://bdrk.dev/"
   },
   "publishConfig": {
     "access": "public"
