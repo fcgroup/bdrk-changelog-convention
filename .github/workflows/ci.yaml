@@ -4,4 +4,4 @@ on:
 jobs:
   ci:
     name: Validation
-    uses: cncsc/actions/.github/workflows/validation.yaml@main
+    uses: fcgroup/actions/.github/workflows/validation.yaml@main

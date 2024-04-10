@@ -1,24 +1,17 @@
 {
-  "name": "@cncsc/cncsc-changelog-convention",
+  "name": "@bdrk/changelog-convention",
   "version": "0.0.0-development",
-  "description": "Preset configuration for conventional-changelog describing CNCSC's conventions.",
+  "description": "Preset configuration for conventional-changelog describing Bedrock's versioning conventions.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:cncsc/cncsc-changelog-convention.git"
+    "url": "git@github.com:fcgroup/bdrk-changelog-convention.git"
   },
   "author": {
-    "name": "Cloud-Native Cybersecurity Collective",
-    "email": "info@cncsc.io",
-    "url": "https://www.cncsc.io/"
+    "name": "Fritz Consulting Group Inc.",
+    "email": "info@fritz.consulting",
+    "url": "https://www.fritz.consulting/"
   },
-  "contributors": [
-    {
-      "name": "Armor Defense Inc.",
-      "email": "info@armor.com",
-      "url": "https://www.armor.com/"
-    }
-  ],
   "scripts": {
     "lint": "eslint ."
   },
