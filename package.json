@@ -12,6 +12,9 @@
     "email": "info@fritz.consulting",
     "url": "https://www.fritz.consulting/"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "lint": "eslint ."
   },
