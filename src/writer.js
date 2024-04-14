@@ -1,4 +1,4 @@
-import { readFile } from 'fs/promises';
+import { readFile, stat } from 'fs/promises';
 import { resolve } from 'path';
 import { fileURLToPath } from 'url'
 
@@ -57,6 +57,43 @@ function getWriterOpts() {
   };
 }
 
+async function exists(path) {
+  try {
+    await stat(path);
+    return true;
+  }
+  catch {
+    return false;
+  }
+}
+
+async function getIssueBaseUrl() {
+  // Check if it is supplied as an environment variable
+  if (process.env.BDRK_ISSUE_BASE_URL) {
+    return process.env.BDRK_ISSUE_BASE_URL;
+  }
+
+  // Check if it exists in the semantic-release config
+  if (await exists('.releaserc.json')) {
+    const releaseConfig = JSON.parse(await readFile('.releaserc.json', 'utf-8'));
+    const notesConfig = releaseConfig.plugins.find(x => x[0] === '@semantic-release/release-notes-generator');
+
+    if (notesConfig && notesConfig[1].issueUrlPrefix) {
+      return notesConfig[1].issueUrlPrefix.replace(/\/$/, '');
+    }
+  }
+
+  // Check if the package.json contains a `bugs` key.
+  if (await exists('package.json')) {
+    const packageJson = JSON.parse(await readFile('package.json', 'utf-8'));
+    if (packageJson.bugs?.url) {
+      return packageJson.bugs.url.replace(/\/$/, '');
+    }
+  }
+
+  return '#';
+}
+
 export async function createWriterOpts() {
   const [ template, header, commit ] = await Promise.all([
     readFile(resolve(dirname, './templates/template.hbs'), 'utf-8'),
@@ -68,7 +105,7 @@ export async function createWriterOpts() {
 
   writerOpts.mainTemplate = template;
   writerOpts.headerPartial = header;
-  writerOpts.commitPartial = commit;
+  writerOpts.commitPartial = commit.replace(/{{BDRK_ISSUE_BASE_URL}}/gm, await getIssueBaseUrl());
 
   return writerOpts;
 }

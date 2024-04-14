@@ -1,3 +1,2 @@
-* {{#if message}}{{#if issue}}[{{issue}}](https://armor-defense.atlassian.net/browse/{{issue}}): {{message}}{{else}}{{message}}{{/if}}{{else}}{{header}}{{/if}}
-
+* {{#if message}}{{#if issue}}[{{issue}}]({{BDRK_ISSUE_BASE_URL}}/{{issue}}): {{message}}{{else}}{{message}}{{/if}}{{else}}{{header}}{{/if}}
 {{~!-- commit hash --}} ({{hash}})
