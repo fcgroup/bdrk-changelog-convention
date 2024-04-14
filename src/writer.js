@@ -58,9 +58,17 @@ function getWriterOpts() {
 }
 
 export async function createWriterOpts() {
+  const [ template, header, commit ] = await Promise.all([
+    readFile(resolve(dirname, './templates/template.hbs'), 'utf-8'),
+    readFile(resolve(dirname, './templates/header.hbs'), 'utf-8'),
+    readFile(resolve(dirname, './templates/commit.hbs'), 'utf-8'),
+  ]);
+
   const writerOpts = getWriterOpts();
-  writerOpts.mainTemplate = await readFile(resolve(dirname, './templates/template.hbs'), 'utf-8');
-  writerOpts.headerPartial = await readFile(resolve(dirname, './templates/header.hbs'), 'utf-8');
-  writerOpts.commitPartial = await readFile(resolve(dirname, './templates/commit.hbs'), 'utf-8');
+
+  writerOpts.mainTemplate = template;
+  writerOpts.headerPartial = header;
+  writerOpts.commitPartial = commit;
+
   return writerOpts;
 }
