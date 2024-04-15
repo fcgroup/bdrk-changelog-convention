@@ -24,8 +24,8 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@cncsc/eslint-config": "^0.1.0",
-    "@cncsc/semantic-release-config": "^1.0.1",
+    "@bdrk/eslint-config": "^1.0.0",
+    "@bdrk/semantic-release-config": "^3.0.6",
     "eslint": "^8.26.0"
   }
 }
