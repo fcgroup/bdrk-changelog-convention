@@ -76,7 +76,7 @@ async function getIssueBaseUrl() {
   // Check if it exists in the semantic-release config
   if (await exists('.releaserc.json')) {
     const releaseConfig = JSON.parse(await readFile('.releaserc.json', 'utf-8'));
-    const notesConfig = releaseConfig.plugins.find(x => x[0] === '@semantic-release/release-notes-generator');
+    const notesConfig = releaseConfig.plugins?.find(x => x[0] === '@semantic-release/release-notes-generator');
 
     if (notesConfig && notesConfig[1].issueUrlPrefix) {
       return notesConfig[1].issueUrlPrefix.replace(/\/$/, '');
