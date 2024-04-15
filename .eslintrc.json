@@ -1,5 +1,5 @@
 {
-  "extends": "@cncsc/eslint-config",
+  "extends": "@bdrk/eslint-config",
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 14
