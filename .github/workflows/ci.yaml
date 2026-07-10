@@ -5,3 +5,5 @@ jobs:
   ci:
     name: Validation
     uses: fcgroup/actions/.github/workflows/validation.yaml@main
+    with:
+      runDefaultTests: true

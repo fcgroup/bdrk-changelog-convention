@@ -21,32 +21,33 @@ function getCommitGroup(type) {
 function getWriterOpts() {
   return {
     transform: (commit) => {
-      if (!commit.type) {
-        commit.type = 'patch';
-      }
+      // conventional-changelog-writer@8 passes an immutable commit and merges
+      // whatever we return, so build up a patch object rather than mutating.
+      const patch = {};
 
-      commit.group = getCommitGroup(commit.type);
+      patch.type = commit.type || 'patch';
+      patch.group = getCommitGroup(patch.type);
 
       // Parse the issue number from the commit message.
       // This assumes (by convention) Jira issue numbers.
       const issue = commit.subject.match(/^[A-Z0-9]+-\d+/);
       if (issue) {
-        commit.issue = issue[0];
+        patch.issue = issue[0];
       }
 
       // Parse the prose from the commit message.
       const message = commit.subject.match(/: (.*)/);
       if (message) {
         // Remove the trailing version qualifier keyword in parenthesis.
-        commit.message = message[1].replace(/( )*\((major|minor|patch|breaking|feat|feature|fix)\)/, '');
+        patch.message = message[1].replace(/( )*\((major|minor|patch|breaking|feat|feature|fix)\)/, '');
       }
 
-      if (!commit.message || commit.message.match(/Merge pull request #\d*/)) {
+      if (!patch.message || patch.message.match(/Merge pull request #\d*/)) {
         // Don't consider merge commits – the underlying commits will each be evaluated.
         return;
       }
 
-      return commit;
+      return patch;
     },
     groupBy: 'group',
     commitGroupsSort: 'title',
