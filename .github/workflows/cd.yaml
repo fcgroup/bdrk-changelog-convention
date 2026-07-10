@@ -1,12 +1,29 @@
-name: Continuous Deployment
 on:
   workflow_run:
     workflows: [Continuous Integration]
     types: [completed]
     branches: [main]
+
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
-  on-success:
+  semantic_release:
     name: Semantic Release
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     uses: fcgroup/actions/.github/workflows/semantic-release.yaml@main
+    secrets:
+      GIT_TOKEN_BASIC: ${{ secrets.GIT_TOKEN_BASIC }}
+
+  npm_publish:
+    name: Publish to NPM
+    needs: semantic_release
+    if: ${{ github.event.workflow_run.conclusion == 'success' && needs.semantic_release.outputs.semver != '' }}
+    uses: fcgroup/actions/.github/workflows/npm-publish.yaml@main
+    with:
+      git-tag: ${{ needs.semantic_release.outputs.semver }}
+      version: ${{ needs.semantic_release.outputs.semver }}
+      provenance: true
     secrets:
       GIT_TOKEN_BASIC: ${{ secrets.GIT_TOKEN_BASIC }}

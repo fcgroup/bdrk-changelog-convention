@@ -1,3 +1,3 @@
 {
-  "extends": "@bdrk/semantic-release-config/npm"
+  "extends": "@bdrk/semantic-release-config/base"
 }
