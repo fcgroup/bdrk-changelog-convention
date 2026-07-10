@@ -3,6 +3,7 @@ repos:
     rev: v2.4.0
     hooks:
       - id: check-added-large-files
+        exclude: package-lock.json
       - id: check-byte-order-marker
       - id: check-case-conflict
       - id: check-executables-have-shebangs
@@ -17,9 +18,10 @@ repos:
       - id: trailing-whitespace
   - repo: local
     hooks:
-      - id: npm-lint-scripts
+      - id: npm-lint
         name: run npm lint
         entry: npm run lint
         language: system
-        types: [javascript]
-        stages: [push]
+        pass_filenames: false
+        types: [ts]
+        stages: [pre-push]
