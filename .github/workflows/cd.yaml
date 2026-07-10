@@ -10,4 +10,3 @@ jobs:
     uses: fcgroup/actions/.github/workflows/semantic-release.yaml@main
     secrets:
       GIT_TOKEN_BASIC: ${{ secrets.GIT_TOKEN_BASIC }}
-      NPM_ACCESS_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
