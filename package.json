@@ -26,10 +26,14 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@bdrk/eslint-config": "^1.0.0",
+    "@bdrk/eslint-config": "^1.0.1",
     "@bdrk/semantic-release-config": "^3.0.6",
     "@vitest/coverage-v8": "^4.1.10",
-    "eslint": "^8.26.0",
+    "eslint": "^10.7.0",
     "vitest": "^4.1.10"
+  },
+  "allowScripts": {
+    "fsevents@2.3.3": true,
+    "unrs-resolver@1.12.2": true
   }
 }
