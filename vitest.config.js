@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitest/config';
 
-// eslint-disable-next-line import/no-default-export -- Vitest requires a default-exported config
+// eslint-disable-next-line import-x/no-default-export -- Vitest requires a default-exported config
 export default defineConfig({
   test: {
     coverage: {
