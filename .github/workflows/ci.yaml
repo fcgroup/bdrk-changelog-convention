@@ -1,6 +1,10 @@
 name: Continuous Integration
 on:
-  - push
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
 jobs:
   ci:
     name: Validation
