@@ -26,7 +26,7 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@bdrk/eslint-config": "^1.0.1",
+    "@bdrk/eslint-config": "^2.0.0",
     "@bdrk/semantic-release-config": "^3.0.6",
     "@vitest/coverage-v8": "^4.1.10",
     "eslint": "^10.7.0",
